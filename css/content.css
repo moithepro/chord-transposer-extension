@@ -1,0 +1,8 @@
+.chordTransposerChord{
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.chordTransposerChord:hover{
+	text-decoration: underline;
+}
