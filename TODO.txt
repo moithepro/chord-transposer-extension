@@ -1,0 +1,2 @@
+- add DOM click manager to convert any page
+- add algorithm to avoid converting chords inside sentences

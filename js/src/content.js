@@ -1,4 +1,4 @@
-var scale_itailian = ["do", "re", "mi", "fa", "sol", "la", "si"],
+var scale_italian = ["do", "re", "mi", "fa", "sol", "la", "si"],
     scale_english = ["C", "D", "E", "F", "G", "A", "B"],
     chordSuffixes = ["7", "m", "#", "b"],
     whitespaces = [" ", "\t", "\n", ")", "(", ">", "<", ";"],
@@ -69,7 +69,7 @@ var detectChords = function() {
         tempText,
         matchIndex,
 
-        chordArray = currentState.convertFromItalian ? scale_itailian : scale_english;
+        chordArray = currentState.convertFromItalian ? scale_italian : scale_english;
 
     chordArray.forEach(function(currentChord, index, array) {
         tempText = containerText.toString().toLowerCase();
@@ -114,13 +114,13 @@ var applyDomToSingleChord = function(index, match) {
     var strBegin = containerText.substr(0, index);
     var strEnd = containerText.substr(index + match.length);
 
-    match[0].toUpperCase();
+    match = match[0].toUpperCase() + match.substr(1);
 
     var prfx = "<a class='" + chordClass + "' data-originaltext='" + match + "'>";
     var sfx = "</a>";
 
     if (currentState.convertFromItalian)
-        match = convertItalianChordToEnglish(match.toLowerCase());
+        match = convertItalianChordToEnglish(match);
 
     containerText = strBegin + prfx + match + sfx + strEnd;
 }
@@ -185,17 +185,47 @@ var charCheck = function(character, arr) {
 }
 
 var convertItalianChordToEnglish = function(chord) {
-    var sfx = '';
+    var sfx = '',
+        endChord = 2;
+
+    //make sure chord is lower case
     chord = chord.toLowerCase();
 
-    if ((chord.length == 3 && chord != 'sol') || (chord.length == 4)) {
-        sfx = chord[chord.length - 1];
-        chord = chord.substring(0, chord.length - 1);
+    //if chord is 'sol' then the chord is longer
+    if(chord.indexOf('sol') == 0)
+        endChord = 3;
+
+    //split suffix from actual chord
+    sfx = chord.substr(endChord);
+    chord = chord.substr(0,endChord);
+
+    //convert and add suffix
+    chord = scale_english[scale_italian.indexOf(chord)] + sfx;
+
+    if(sfx.indexOf('b') != -1){
+        //change flat chords to sharp chords for future transposing
+        chord = convertFlatChordToSharpChord(chord);
     }
 
-    chord = scale_english[scale_itailian.indexOf(chord)] + sfx;
-
     return chord;
+}
+
+//at the moment only works with english chords
+var convertFlatChordToSharpChord = function(chord) {
+    var tempChord = chord[0].toUpperCase(),
+        chordSfx = chord.substr(1);
+        ind = scale_english.indexOf(tempChord);
+
+    if(ind == 0)
+        ind = scale_english.length - 1;
+    else
+        ind--;
+
+    tempChord = scale_english[ind];
+    
+    chordSfx = chordSfx.replace('b','#');
+
+    return tempChord + chordSfx;
 }
 
 var transpose = function(offset) {
