@@ -18,6 +18,8 @@
             "js":[  
                 "js/vendor/jquery.js",
                 "js/vendor/jquery.getPath.js",
+                "js/src/chord.helper.js",
+                "js/src/dom.helper.js",
                 "js/src/content.js"
             ],
             "css":[  
