@@ -35,6 +35,7 @@ section > *{
 	vertical-align: middle;
 }
 
+body.selector section.selector,
 body.convert section.convert,
 body.transpose section.transpose{
 	opacity: 1;

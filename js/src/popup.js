@@ -27,8 +27,10 @@ function setDOMInfo(data) {
                 data.transpose = "+" + data.transpose;
             $("section.transpose span").text(data.transpose);
         }
-    } else {
+    } else if(data.initialized) {
         $("body").attr('class', 'convert');
+    } else {
+        $("body").attr('class', 'selector');
     }
 
 }

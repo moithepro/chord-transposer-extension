@@ -17,6 +17,7 @@
             ],
             "js":[  
                 "js/vendor/jquery.js",
+                "js/vendor/jquery.getPath.js",
                 "js/src/content.js"
             ],
             "css":[  

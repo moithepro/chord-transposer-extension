@@ -1,9 +1,12 @@
+
 var scale_italian = ["do", "re", "mi", "fa", "sol", "la", "si"],
     scale_english = ["C", "D", "E", "F", "G", "A", "B"],
     chordSuffixes = ["7", "m", "#", "b"],
     whitespaces = [" ", "\t", "\n", ")", "(", ">", "<", ";"],
     chordClass = "chordTransposerChord",
+    selectingDOM = false,
     currentState = {
+        initialized: false,
         converted: false,
         transpose: 0,
         convertFromItalian: true
@@ -12,10 +15,60 @@ var scale_italian = ["do", "re", "mi", "fa", "sol", "la", "si"],
     $container,
     containerText;
 
+/* Listen for message from the popup */
+chrome.runtime.onMessage.addListener(function(msg, sender, callback) {
+    /* First, validate the message's structure */
+    if (msg.from != 'popup')
+        return;
+
+    switch (msg.subject) {
+        case 'select':
+            selectingDOM = true;
+            domselector_setup();
+            break;
+        case 'convert':
+            applyDomToChords();
+            break;
+        case 'transposeUp':
+            transpose(1);
+            break;
+        case 'transposeDown':
+            transpose(-1);
+            break;
+    }
+
+    callback(currentState);
+});
+
+var domselector_setup = function() {
+
+    var hoverFunc = function(e){
+        if(!selectingDOM)
+            return;
+
+        $(".ct_ds_hover").removeClass('ct_ds_hover');
+        var $el = $(e.target);
+        if($el.css('position') == 'static')
+            $el.css('position','relative');
+        $el.addClass("ct_ds_hover");
+    }
+
+    var clickFunc = function(e){
+        selectingDOM = false;
+        $(this).removeClass('ct_ds_hover');
+        convertion_setup($(e.currentTarget).getPath());
+
+        $("body *").off('mouseenter',hoverFunc);
+        $(document).off('click', '.ct_ds_hover', clickFunc);
+    }
+
+    $("body *").on('mouseenter',hoverFunc);
+    $(document).on('click', '.ct_ds_hover', clickFunc)
+}
 
 //"private" method:
-var setup = function(containerSelector) {
-    $container = $(containerSelector);
+var convertion_setup = function(containerEl) {
+    $container = $(containerEl);
 
     if ($container.length == 0) {
         console.log('no container');
@@ -25,43 +78,14 @@ var setup = function(containerSelector) {
         containerText = $container.html().toString();
         detectChords();
 
-        if (detectedChords.length > 0) {
-            managePopup();
-        } else {
+        currentState.initialized = true;
+
+        if (detectedChords.length == 0) {
             console.log('no detectedChords');
         }
 
     }
 };
-
-var managePopup = function() {
-    /* Listen for message from the popup */
-    chrome.runtime.onMessage.addListener(function(msg, sender, callback) {
-        /* First, validate the message's structure */
-        if (msg.from != 'popup')
-            return;
-
-        switch (msg.subject) {
-            case 'convert':
-                applyDomToChords();
-                break;
-            case 'transposeUp':
-                transpose(1);
-                break;
-            case 'transposeDown':
-                transpose(-1);
-                break;
-        }
-
-        callback(currentState);
-    });
-
-    /* open popup */
-    chrome.runtime.sendMessage({
-        from: 'content',
-        subject: 'showPageAction'
-    });
-}
 
 var detectChords = function() {
     var chordArray,
@@ -261,5 +285,9 @@ function transposeChord(chord, amount) {
 }
 
 $(document).ready(function() {
-    setup(".post.hentry[itemprop='blogPost'] .post-body");
+    //setup(".post.hentry[itemprop='blogPost'] .post-body");
+    chrome.runtime.sendMessage({
+        from: 'content',
+        subject: 'showPageAction'
+    });
 })
