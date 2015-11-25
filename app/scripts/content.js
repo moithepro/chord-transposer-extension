@@ -8,11 +8,33 @@ var currentState = {
     $page,
     pageHTML;
 
+
+var DOMSelected = function(el) {
+    $page = $(el);
+
+    if ($page.length === 0) {
+        console.log('no container');
+    } else {
+        console.log('setup');
+
+        pageHTML = $page.html().toString();
+
+        detectedChords = DOMHelper.detectChords(pageHTML, currentState.convertFromItalian ? ChordHelper.scaleItalian : ChordHelper.scaleEnglish);
+
+        currentState.initialized = true;
+
+        if (detectedChords.length === 0) {
+            console.log('no detectedChords');
+        }
+    }
+};
+
 /* Listen for message from the popup */
 chrome.runtime.onMessage.addListener(function(msg, sender, callback) {
     /* First, validate the message's structure */
-    if (msg.from != 'popup')
+    if (msg.from !== 'popup'){
         return;
+    }
 
     switch (msg.subject) {
         case 'select':
@@ -35,25 +57,6 @@ chrome.runtime.onMessage.addListener(function(msg, sender, callback) {
     callback(currentState);
 });
 
-var DOMSelected = function(el) {
-    $page = $(el);
-
-    if ($page.length == 0) {
-        console.log('no container');
-    } else {
-        console.log('setup');
-
-        pageHTML = $page.html().toString();
-
-        detectedChords = DOMHelper.detectChords(pageHTML, currentState.convertFromItalian ? ChordHelper.scale_italian : ChordHelper.scale_english);
-
-        currentState.initialized = true;
-
-        if (detectedChords.length == 0) {
-            console.log('no detectedChords');
-        }
-    }
-};
 
 $(document).ready(function() {
     //setup(".post.hentry[itemprop='blogPost'] .post-body");
@@ -61,4 +64,4 @@ $(document).ready(function() {
         from: 'content',
         subject: 'showPageAction'
     });
-})
+});

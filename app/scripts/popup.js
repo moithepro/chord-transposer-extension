@@ -10,8 +10,9 @@ function sendMessage(msg, callback) {
                 subject: msg
             },
             function(response) {
-                if (callback)
+                if (callback){
                     callback(response);
+                }
             }
         );
     });
@@ -20,17 +21,18 @@ function sendMessage(msg, callback) {
 /* Update the relevant fields with the new data */
 function setDOMInfo(data) {
     if (data.converted) {
-        $("body").attr('class', 'transpose');
+        $('body').attr('class', 'transpose');
 
-        if (data.transpose != null) {
-            if (data.transpose > 0)
-                data.transpose = "+" + data.transpose;
-            $("section.transpose span").text(data.transpose);
+        if (data.transpose !== null) {
+            if (data.transpose > 0){
+                data.transpose = '+' + data.transpose;
+            }
+            $('section.transpose span').text(data.transpose);
         }
     } else if(data.initialized) {
-        $("body").attr('class', 'convert');
+        $('body').attr('class', 'convert');
     } else {
-        $("body").attr('class', 'selector');
+        $('body').attr('class', 'selector');
     }
 
 }
@@ -42,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function() {
     sendMessage('DOMInfo', setDOMInfo);
 
     /*let every button in the popup request an action from the content*/
-    $("button").click(function(e) {
+    $('button').click(function(e) {
         sendMessage($(e.currentTarget).data('function'), setDOMInfo);
     });
 });
