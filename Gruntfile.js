@@ -226,15 +226,11 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('build', [
+		'jshint',
 		'clean:dist',
 		'concurrent:dist',
 		'cssmin',
 		'uglify',
 		'compress'
-	]);
-
-	grunt.registerTask('default', [
-		'jshint',
-		'build'
 	]);
 };
