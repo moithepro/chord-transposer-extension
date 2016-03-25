@@ -1,14 +1,17 @@
 {
   "name": "chord-transposer",
-  "private": true,
-  "dependencies": {},
+  "version": "0.0.1",
+  "dependencies": {
+    "standard":"latest",
+    "snazzy":"latest",
+    "standard-format": "latest"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-copy": "~0.8.2",
     "grunt-contrib-concat": "~0.5.1",
     "grunt-contrib-uglify": "~0.10.0",
     "grunt-contrib-compass": "~1.0.4",
-    "grunt-contrib-jshint": "~0.11.3",
     "grunt-contrib-cssmin": "~0.14.0",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-imagemin": "~1.0.0",
@@ -17,10 +20,21 @@
     "grunt-svgmin": "~3.0.0",
     "grunt-concurrent": "~2.0.4",
     "jit-grunt": "^0.9.1",
-    "time-grunt": "~1.2.2",
-    "jshint-stylish": "~2.0.1"
+    "time-grunt": "~1.2.2"
   },
-  "engines": {
-    "node": ">=0.8.0"
+  "scripts": {
+    "test": "node_modules/.bin/standard --verbose | snazzy",
+    "standardize": "node_modules/.bin/standard-format -w"
+  },
+  "standard": {
+    "ignore": [
+      "**/vendor/"
+    ],
+    "globals": [
+      "$",
+      "chrome",
+      "DOMHelper",
+      "ChordHelper"
+    ]
   }
 }
