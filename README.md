@@ -1,6 +1,6 @@
 # Chord Transposer - Chrome Extension
 
-[![Build Status](https://travis-ci.org/aberonni/travis-broken-example.svg?branch=master)](https://travis-ci.org/aberonni/travis-broken-example)
+[![Build Status](https://travis-ci.org/aberonni/Chord-Transposer-Extension.svg?branch=master)](https://travis-ci.org/aberonni/Chord-Transposer-Extension)
 
 A chrome extension that allows you to transpose chords on any website.
 
