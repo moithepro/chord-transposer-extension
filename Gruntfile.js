@@ -20,9 +20,9 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      compass: {
+      sass: {
         files: ['<%= config.app %>/sass/{,*/}*.{scss,sass}'],
-        tasks: ['compass:debug']
+        tasks: ['sass']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      dist: {
+      tasks: {
         files: [{
           dot: true,
           src: [
@@ -51,23 +51,15 @@ module.exports = function (grunt) {
     },
 
     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
+    sass: {
       options: {
-        sassDir: '<%= config.app %>/sass',
-        cssDir: '<%= config.dist %>/styles',
-        generatedImagesDir: '<%= config.dist %>/images/generated',
-        imagesDir: '<%= config.app %>/images',
-        javascriptsDir: '<%= config.app %>/scripts',
-        fontsDir: '<%= config.app %>/sass/fonts',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/sass/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false
-      },
-      debug: {
+        sourceMap: false
       },
       dist: {
+        files: {
+          '<%= config.dist %>/styles/content.css': '<%= config.app %>/sass/content.scss',
+          '<%= config.dist %>/styles/popup.css': '<%= config.app %>/sass/popup.scss'
+        }
       }
     },
 
@@ -161,15 +153,8 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
-      debug: [
-        'compass:debug',
-        'imagemin',
-        'svgmin',
-        'concat',
-        'copy'
-      ],
-      dist: [
-        'compass:dist',
+      tasks: [
+        'sass',
         'imagemin',
         'svgmin',
         'concat',
@@ -198,17 +183,21 @@ module.exports = function (grunt) {
 
   grunt.registerTask('debug', function () {
     grunt.task.run([
-      'clean:dist',
-      'concurrent:debug',
+      'clean',
+      'concurrent',
       'watch'
     ])
   })
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'concurrent:dist',
+    'clean',
+    'concurrent',
     'cssmin',
-    'uglify',
+    'uglify'
+  ])
+
+  grunt.registerTask('package', [
+    'build',
     'compress'
   ])
 }
