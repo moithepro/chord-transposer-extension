@@ -1,5 +1,7 @@
 node_modules
 temp
+bin
 .tmp
 dist
 .sass-cache
+.env

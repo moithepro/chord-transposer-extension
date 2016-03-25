@@ -160,24 +160,6 @@ module.exports = function (grunt) {
         'concat',
         'copy'
       ]
-    },
-
-    // Compress dist files to package
-    compress: {
-      dist: {
-        options: {
-          archive: function () {
-            var manifest = grunt.file.readJSON('app/manifest.json')
-            return 'bin/Chord Transposer-' + manifest.version + '.zip'
-          }
-        },
-        files: [{
-          expand: true,
-          cwd: '<%= config.dist %>/',
-          src: ['**/*'],
-          dest: ''
-        }]
-      }
     }
   })
 
@@ -194,10 +176,5 @@ module.exports = function (grunt) {
     'concurrent',
     'cssmin',
     'uglify'
-  ])
-
-  grunt.registerTask('package', [
-    'build',
-    'compress'
   ])
 }

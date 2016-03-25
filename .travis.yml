@@ -3,4 +3,4 @@ node_js:
   - "node"
 before_install: npm install -g grunt-cli
 install: npm install
-after_success: grunt build
+after_success: grunt build && node build.js

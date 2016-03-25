@@ -1,9 +1,13 @@
 {
   "name": "chord-transposer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
-    "standard": "latest",
+    "crx": "^3.0.3",
+    "dotenv": "^2.0.0",
+    "mkdirp": "^0.5.1",
+    "request": "^2.69.0",
     "snazzy": "latest",
+    "standard": "latest",
     "standard-format": "latest"
   },
   "devDependencies": {

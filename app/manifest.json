@@ -2,7 +2,8 @@
     "manifest_version":2,
     "name":"Chord Transposer",
     "description":"Chord Transposer",
-    "version":"0.0.3",
+    "version":"0.0.4",
+    "update_url": "http://domenicogemoli.com/chord-transposer-extension/updates.xml",
     "offline_enabled":true,
     "background":{
         "persistent":false,
