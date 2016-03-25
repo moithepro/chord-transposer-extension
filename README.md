@@ -1,5 +1,7 @@
 # Chord Transposer - Chrome Extension
 
+[![Build Status](https://travis-ci.org/aberonni/travis-broken-example.svg?branch=master)](https://travis-ci.org/aberonni/travis-broken-example)
+
 A chrome extension that allows you to transpose chords on any website.
 
 > At the moment only works on websites that have italian chords (do, re, mi etc..) and converts them into english chords.
