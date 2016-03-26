@@ -4,6 +4,7 @@
   "dependencies": {
     "crx": "^3.0.3",
     "dotenv": "^2.0.0",
+    "ftp": "^0.3.10",
     "mkdirp": "^0.5.1",
     "request": "^2.69.0",
     "snazzy": "latest",
