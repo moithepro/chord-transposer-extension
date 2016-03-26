@@ -23,7 +23,7 @@ function generateCrx (pemKey) {
         fs.writeFileSync(join(process.cwd(), 'bin/update.xml'), updateXML)
         fs.writeFileSync(join(process.cwd(), 'bin/crx/', crxFileName), crxBuffer)
 
-        console.log('written files')
+        console.log(`written file: ${crxFileName}`)
       })
     })
 }
