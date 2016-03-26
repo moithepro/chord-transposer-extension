@@ -12,7 +12,7 @@ function generateCrx (pemKey) {
     privateKey: pemKey
   })
 
-  console.log(`[crx] generating files`)
+  console.log('[crx] generating files')
 
   return crx.load(join(process.cwd(), 'dist'))
     .then(function () {
@@ -32,7 +32,7 @@ module.exports = function () {
   var self = this
 
   return new Promise(function (resolve, reject) {
-    console.log(`[crx] fetcing key:`)
+    console.log('[crx] fetcing key:')
     request.get(`${app.crxPemFile}`, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         return generateCrx(body)
