@@ -1,18 +1,18 @@
+/*global app*/
+
 var request = require('request')
 var fs = require('fs')
 var mkdirp = require('mkdirp')
 var ChromeExtension = require('crx')
 var join = require('path').join
 
-var pkg = require(join(process.cwd(), 'package.json'))
-
 function generateCrx (pemKey) {
-  var crxFileName = `${pkg.name}-v${pkg.version}.crx`
-
   var crx = new ChromeExtension({
-    codebase: `${process.env.crxServer}/crx/${crxFileName}`,
+    codebase: `${app.crxRemoteHost}/${app.crxRemoteDirectory}/crx/${app.crxFileName}`,
     privateKey: pemKey
   })
+
+  console.log(`[crx] generating files`)
 
   return crx.load(join(process.cwd(), 'dist'))
     .then(function () {
@@ -21,9 +21,9 @@ function generateCrx (pemKey) {
 
         mkdirp.sync(join(process.cwd(), 'bin/crx'))
         fs.writeFileSync(join(process.cwd(), 'bin/update.xml'), updateXML)
-        fs.writeFileSync(join(process.cwd(), 'bin/crx/', crxFileName), crxBuffer)
+        fs.writeFileSync(join(process.cwd(), 'bin/crx/', app.crxFileName), crxBuffer)
 
-        console.log(`written file: ${crxFileName}`)
+        console.log(`[crx] written file: ${app.crxFileName}`)
       })
     })
 }
@@ -32,7 +32,8 @@ module.exports = function () {
   var self = this
 
   return new Promise(function (resolve, reject) {
-    request.get(`${process.env.crxServer}/${process.env.crxPemFile}`, function (error, response, body) {
+    console.log(`[crx] fetcing key:`)
+    request.get(`${app.crxPemFile}`, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         return generateCrx(body)
           .then(function () {
