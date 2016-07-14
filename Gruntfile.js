@@ -10,8 +10,7 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist',
-    srcScript: '<%= config.app %>/scripts'
+    dist: 'dist'
   }
 
   grunt.initConfig({
@@ -24,7 +23,8 @@ module.exports = function (grunt) {
         tasks: ['sass']
       },
       gruntfile: {
-        files: ['Gruntfile.js']
+        files: ['Gruntfile.js'],
+        tasks: ['debug']
       },
       images: {
         files: ['<%= config.app %>/images/{,*/}*.{gif,jpeg,jpg,png}'],
@@ -33,6 +33,10 @@ module.exports = function (grunt) {
       svg: {
         files: ['<%= config.app %>/images/{,*/}*.{svg}'],
         tasks: ['svgmin']
+      },
+      scripts: {
+        files: ['<%= config.app %>/scripts/{,*/}*.{js}'],
+        tasks: ['sass']
       }
     },
 
