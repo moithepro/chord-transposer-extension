@@ -49,7 +49,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, callback) {
     case 'transposeUp':
     case 'transposeDown':
       var $chords = $page.find('.' + DOMHelper.chordClass)
-      var offset = msg.subject = 'transposeUp' ? 1 : -1
+      var offset = msg.subject === 'transposeUp' ? 1 : -1
 
       currentState.transpose = ChordHelper.transposeChords($chords, offset, currentState.transpose)
       break
