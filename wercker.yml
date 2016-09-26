@@ -43,7 +43,7 @@ deploy:
     - script:
         name: Install Grunt
         code: |
-          echo "npm-install -g grunt-cli"
+          echo "npm install -g grunt-cli"
 
     - script:
         name: Grunt build
