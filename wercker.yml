@@ -40,12 +40,5 @@ deploy:
   # Read more about steps on our dev center:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
-    - script:
-        name: Install Grunt
-        code: |
-          echo "npm install -g grunt-cli"
-
-    - script:
-        name: Grunt build
-        code: |
-          echo "grunt build"
+    - grunt:
+        tasks: build
