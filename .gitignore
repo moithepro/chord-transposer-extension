@@ -2,6 +2,7 @@ node_modules
 temp
 bin
 .tmp
-dist
+release
 .sass-cache
 .env
+*.tar.gz
