@@ -27,7 +27,7 @@
     "time-grunt": "~1.2.2"
   },
   "scripts": {
-    "test": "node_modules/.bin/standard --verbose | snazzy",
+    "test": "node_modules/.bin/standard \"app/**/*.js\" \"build/**/*.js\" \"*.js\" --verbose | snazzy",
     "standardize": "node_modules/.bin/standard-format -w"
   },
   "standard": {
