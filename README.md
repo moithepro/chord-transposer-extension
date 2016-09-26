@@ -13,7 +13,7 @@ Tested on these websites:
 
 ## Quick install
 
-Download the zip file from the bin folder and upload from the chrome://extensions page
+Download the compressed file from the [releases](Releases) page, extract and add to Chrome by visiting the [Chrome extensions](chrome://extensions) page
 
 ## How to use
 

@@ -1,8 +1,10 @@
-require('dotenv').config({silent: true})
-require('./build/app').load()
+var fstream = require('fstream')
+var tar = require('tar')
+var zlib = require('zlib')
 
-var createCrx = require('./build/createCrx.js')
-var uploadViaFTP = require('./build/uploadViaFTP')
-
-createCrx()
-  .then(uploadViaFTP)
+fstream.Reader('release/')
+  .pipe(tar.Pack())
+  .pipe(zlib.Gzip())
+  .pipe(fstream.Writer({
+    'path': 'release.tar.gz'
+  }))
