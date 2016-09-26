@@ -1,4 +1,4 @@
-/*global app*/
+/* global app */
 
 var Client = require('ftp')
 var c = new Client()

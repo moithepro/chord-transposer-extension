@@ -7,9 +7,9 @@
     "ftp": "^0.3.10",
     "mkdirp": "^0.5.1",
     "request": "^2.69.0",
-    "snazzy": "latest",
-    "standard": "latest",
-    "standard-format": "latest"
+    "snazzy": "^5.0.0",
+    "standard": "^8.1.0",
+    "standard-format": "^2.2.3"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
