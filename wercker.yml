@@ -16,7 +16,7 @@ box: node
 
     # - mongo
     # http://devcenter.wercker.com/docs/services/mongodb.html
-build:
+test:
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
   # Read more about steps on our dev center:
@@ -34,7 +34,7 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-deploy:
+build:
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
   # Read more about steps on our dev center:
@@ -42,3 +42,15 @@ deploy:
   steps:
     - grunt:
         tasks: build
+    - script:
+        name: create zip file
+        code: |
+          node build.js
+github-release:
+  steps:
+    - github-create-release:
+        token: $GITHUB_TOKEN
+        tag: v1.0.0
+    - github-upload-asset:
+        token: $GITHUB_TOKEN
+        file: release.tar.gz
