@@ -1,4 +1,4 @@
-/* sends a message to the content script*/
+/* sends a message to the content script */
 function sendMessage (msg, callback) {
   chrome.tabs.query({
     active: true,
@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function () {
   /* ...and send a request for the DOM info... */
   sendMessage('DOMInfo', setDOMInfo)
 
-  /* let every button in the popup request an action from the content*/
+  /* let every button in the popup request an action from the content */
   $('button').click(function (e) {
     sendMessage($(e.currentTarget).data('function'), setDOMInfo)
   })

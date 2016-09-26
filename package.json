@@ -7,9 +7,9 @@
     "ftp": "^0.3.10",
     "mkdirp": "^0.5.1",
     "request": "^2.69.0",
-    "snazzy": "latest",
-    "standard": "latest",
-    "standard-format": "latest"
+    "snazzy": "^5.0.0",
+    "standard": "^8.1.0",
+    "standard-format": "^2.2.3"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -27,7 +27,7 @@
     "time-grunt": "~1.2.2"
   },
   "scripts": {
-    "test": "node_modules/.bin/standard --verbose | snazzy",
+    "test": "node_modules/.bin/standard \"app/**/*.js\" \"build/**/*.js\" \"*.js\" --verbose | snazzy",
     "standardize": "node_modules/.bin/standard-format -w"
   },
   "standard": {
