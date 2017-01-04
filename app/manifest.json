@@ -1,34 +1,36 @@
 {
-    "manifest_version":2,
-    "name":"Chord Transposer",
-    "description":"Chord Transposer",
-    "version":"0.0.4",
-    "update_url": "http://domenicogemoli.com/chord-transposer-extension/update.xml",
-    "offline_enabled":true,
-    "background":{
-        "persistent":false,
-        "scripts":[
+    "manifest_version": 2,
+    "name": "Chord Transposer",
+    "version": "1.0.0",
+    "description": "An extension that allows you to transpose chords.",
+    "page_action": {
+        "default_title": "Chord Transposer",
+        "default_icon": "images/icon.png",
+        "default_popup": "popup.html"
+    },
+    "author": "Domenico Gemoli",
+    "background": {
+        "persistent": false,
+        "scripts": [
             "scripts/background.js"
         ]
     },
-    "content_scripts":[
+    "content_scripts": [
         {
-            "matches":[
-                "http://*/*"
+            "matches": [
+                "http://*/*",
+                "https://*/*"
             ],
-            "js":[
+            "js": [
                 "scripts/content.js"
             ],
-            "css":[
+            "css": [
                 "styles/content.css"
             ],
-            "run_at":"document_end",
-            "all_frames":false
+            "run_at": "document_end",
+            "all_frames": false
         }
     ],
-    "page_action":{
-        "default_title":"Chord Transposer",
-        "default_icon":"images/icon.png",
-        "default_popup":"popup.html"
-    }
+    "homepage_url": "https://github.com/aberonni/Chord-Transposer-Extension",
+    "offline_enabled": true
 }
