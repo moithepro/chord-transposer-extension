@@ -1,6 +1,6 @@
 function ChordHelper () {}
 
-ChordHelper.scaleItalian = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
+ChordHelper.scaleItalian = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 ChordHelper.scaleEnglish = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 ChordHelper.scaleEnglishFull = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
