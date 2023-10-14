@@ -1,42 +1,18 @@
 {
     "manifest_version": 3,
-    "name": "Chord Transposer",
-    "version": "1.0.0",
-    "description": "An extension that allows you to transpose chords.",
+    "name": "Simple Chord transposer",
+    "version": "1.0",
+    "description": "A simple Chrome extension with +/- buttons.",
     "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "images/icon.png",
-            "48": "images/icon.png",
-            "128": "images/icon.png"
-        }
+      "default_popup": "popup.html"
     },
-    "author": "Domenico Gemoli",
-    "background": {
-        "service_worker": "background.js"
-    },
+    "permissions": [
+      "activeTab"
+    ],
     "content_scripts": [
         {
-            "matches": [
-                "http://*/*",
-                "https://*/*"
-            ],
-            "js": [
-                "scripts/content.js"
-            ],
-            "css": [
-                "styles/content.css"
-            ]
+          "matches": ["<all_urls>"],
+          "js": ["content.js"]
         }
-    ],
-    "permissions": [
-        "activeTab"
-    ],
-    "icons": {
-        "16": "images/icon.png",
-        "48": "images/icon.png",
-        "128": "images/icon.png"
-    },
-    "homepage_url": "https://github.com/moithepro/Chord-Transposer-Extension",
-    "offline_enabled": true
-}
+      ]
+  }

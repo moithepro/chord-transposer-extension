@@ -1,30 +1,20 @@
-<!doctype html>
-<html>
-	<head>
-	    <meta charset="utf-8">
-	  
-	    <link href="styles/popup.css" rel="stylesheet">
-  	</head>
-	<body>
-		<section class="selector">
-			<div>
-				<button data-function="select">SELECT CHORDS</button>
-			</div>
-		</section>
-		<section class="convert">
-			<div>
-				<button data-function="convert">ENABLE</button>
-			</div>
-		</section>
-		<section class="transpose">
-			<div>
-				<button data-function="transposeUp">+</button>
-				<span>0</span>
-				<button data-function="transposeDown">-</button>
-			</div>
-		</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="popup.js"></script>
+	<script src="chords.js"></script>
+</head>
+<body>
+    <div id="counter">
+        <button id="minus">-</button>
+        <span id="count">0</span>
+        <button id="plus">+</button>
+		<span id="capo">Capo at: 0</span>
 
-		<script src="scripts/popup-vendor.js"></script>
-	    <script src="scripts/popup.js"></script>
-	</body>
+    </div>
+</body>
 </html>
