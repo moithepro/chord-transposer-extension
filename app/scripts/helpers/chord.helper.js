@@ -1,3 +1,5 @@
+const { Transposer } = require(".")
+
 function ChordHelper () {}
 
 ChordHelper.scaleItalian = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si']
@@ -58,15 +60,11 @@ ChordHelper.transposeChords = function ($chords, offset, currentTranspose) {
 }
 
 ChordHelper.transposeSingle = function (chord, amount) {
-  var scale = ChordHelper.scaleEnglishFull
-
-  return chord.replace(/[CDEFGAB]#?/g,
-    function (match) {
-      var i = (scale.indexOf(match) + amount) % scale.length
-
-      return scale[i < 0 ? i + scale.length : i]
-    }
-  )
+  if (amount > 0) {
+    return Transposer.transpose(chord).up(amount).toString()
+  } else if (amount < 0) {
+    return Transposer.transpose(chord).down(Math.abs(amount)).toString()
+  }
 }
 
 ChordHelper.italianToEnglish = function (chord) {

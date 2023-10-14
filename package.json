@@ -1,42 +1,16 @@
 {
-  "name": "chord-transposer",
+  "name": "chord-transposer-extension",
   "version": "1.0.0",
-  "dependencies": {
-    "snazzy": "^5.0.0",
-    "standard": "^8.1.0",
-    "standard-format": "^2.2.3"
-  },
-  "devDependencies": {
-    "fstream": "^1.0.10",
-    "grunt": "^1.0.1",
-    "grunt-concurrent": "~2.0.4",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.1",
-    "grunt-contrib-copy": "~0.8.2",
-    "grunt-contrib-cssmin": "~0.14.0",
-    "grunt-contrib-imagemin": "~1.0.0",
-    "grunt-contrib-uglify": "~0.10.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "^1.1.0",
-    "grunt-svgmin": "~3.0.0",
-    "jit-grunt": "^0.9.1",
-    "tar": "^2.2.1",
-    "time-grunt": "~1.2.2"
-  },
+  "description": "[![Build Status](https://travis-ci.org/aberonni/Chord-Transposer-Extension.svg?branch=master)](https://travis-ci.org/aberonni/Chord-Transposer-Extension)",
+  "main": "build.js",
   "scripts": {
-    "test": "node_modules/.bin/standard \"app/**/*.js\" \"*.js\" --verbose | snazzy",
-    "build": "npm run test && node_modules/.bin/grunt build && node build.js",
-    "standardize": "node_modules/.bin/standard-format -w"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "standard": {
-    "ignore": [
-      "**/vendor/"
-    ],
-    "globals": [
-      "$",
-      "chrome",
-      "DOMHelper",
-      "ChordHelper"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chord-transposer": "^3.0.9",
+    "xregexp": "^5.1.1"
   }
 }

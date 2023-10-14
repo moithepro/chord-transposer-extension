@@ -1,19 +1,19 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Chord Transposer",
     "version": "1.0.0",
     "description": "An extension that allows you to transpose chords.",
-    "page_action": {
-        "default_title": "Chord Transposer",
-        "default_icon": "images/icon.png",
-        "default_popup": "popup.html"
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/icon.png",
+            "48": "images/icon.png",
+            "128": "images/icon.png"
+        }
     },
     "author": "Domenico Gemoli",
     "background": {
-        "persistent": false,
-        "scripts": [
-            "scripts/background.js"
-        ]
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -26,11 +26,17 @@
             ],
             "css": [
                 "styles/content.css"
-            ],
-            "run_at": "document_end",
-            "all_frames": false
+            ]
         }
     ],
-    "homepage_url": "https://github.com/aberonni/Chord-Transposer-Extension",
+    "permissions": [
+        "activeTab"
+    ],
+    "icons": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    },
+    "homepage_url": "https://github.com/moithepro/Chord-Transposer-Extension",
     "offline_enabled": true
 }
