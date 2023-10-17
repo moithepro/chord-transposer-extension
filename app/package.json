@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "chord-transposer": "^3.0.9"
+    "chord-transposer": "^3.0.9",
+    "jquery": "^3.7.1"
   }
 }
