@@ -112,7 +112,7 @@ function transposeChord(chord, amount) {
 
 function transposeChordsInLine(line, steps) {
   const chordRegex =
-    /(^|\n\s)[A-G][#b]?[m]?(?:maj|min|sus|aug|dim|maj7|min7|5|7|9|11|13)?(?:\/[A-G][#b]?[m]?)?(?=\s\n|$)/g;
+    /(^|[\s",])[A-G][#b]?[m]?(?:maj|min|sus2|sus4|sus2sus4|aug|dim|dim7|maj7|maj7#5|maj9|maj11|maj13|maj9#11|maj13#11|min7|5|6|7|9|11|13)?(?:\/[A-G][#b]?[m]?)?(?=[\s",]|$)/g;
   return line.replace(chordRegex, (match) => {
     return transposeChord(match, steps);
   });
@@ -141,10 +141,6 @@ function iterateElements(positive) {
     updateElement(leafElements[i], positive);
   }
 
-  // array = document.getElementsByTagName("td");
-  // for (var i = 0; i < array.length; i++) {
-  //   updateElement(array[i], positive);
-  // }
 }
 
 function increment() {
